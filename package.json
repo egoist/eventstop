@@ -1,0 +1,38 @@
+{
+  "name": "eventstop",
+  "version": "0.0.0",
+  "description": "A minimal event library for Node.js and browser.",
+  "repository": {
+    "url": "egoist/eventstop",
+    "type": "git"
+  },
+  "main": "dist/eventstop.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "NODE_ENV=test ava && npm run lint && npm run build",
+    "lint": "xo src/*.js",
+    "build": "bili --format umd --module-name EventStop",
+    "prepublish": "npm t"
+  },
+  "author": "egoist <0x142857@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "ava": "^0.17.0",
+    "babel-preset-stage-2": "^6.18.0",
+    "babel-register": "^6.18.0",
+    "bili": "^0.10.0",
+    "xo": "^0.17.1"
+  },
+  "ava": {
+    "require": [
+      "babel-register"
+    ]
+  },
+  "xo": {
+    "space": 2,
+    "semicolon": false,
+    "esnext": true
+  }
+}
