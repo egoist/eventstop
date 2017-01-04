@@ -14,6 +14,8 @@
 yarn add eventstop
 ```
 
+You can also use the UMD version via https://unpkg.com/eventstop
+
 ## Usage
 
 ```js
