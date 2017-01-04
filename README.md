@@ -6,7 +6,7 @@
 
 - Modern
 - For Node.js and browsers
-- 300 byte minified and gzipped
+- 300 bytes minified and gzipped
 
 ## Install
 
