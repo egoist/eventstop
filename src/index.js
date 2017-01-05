@@ -3,12 +3,20 @@ export default class EventStop {
     this.events = {}
   }
 
-  subscribe(event, fn) {
+  subscribe(event, fn, once) {
     this.events[event] = this.events[event] || []
-    this.events[event].push(fn)
-    return () => {
+    const handler = once ? (...args) => {
       this.unsubscribe(event, fn)
+      fn(...args)
+    } : fn
+    this.events[event].push(handler)
+    return () => {
+      this.unsubscribe(event, handler)
     }
+  }
+
+  once(event, fn) {
+    return this.subscribe(event, fn, true)
   }
 
   unsubscribe(event, fn) {

@@ -41,6 +41,10 @@ unsubscribe()
 
 Return a function which would execute `unsubscribe(event, handler)` when you call it.
 
+### .once(event, handler)
+
+Like `.subscribe` but only trigger `handler` once.
+
 #### event
 
 Type: `string`

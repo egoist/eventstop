@@ -13,3 +13,15 @@ test('main', t => {
   event.emit('hola', 'mitsuha')
   t.is(yourName, 'taki')
 })
+
+test('once', t => {
+  const event = new EventStop()
+  let yourName
+  const unsubscribe = event.once('hola', name => {
+    yourName = name
+  })
+  event.emit('hola', 'taki')
+  t.is(yourName, 'taki')
+  event.emit('hola', 'mitsuha')
+  t.is(yourName, 'taki')
+})
