@@ -21,12 +21,11 @@ export default function eventstop() {
   }
 
   function off(event, fn) {
-    if (event in events) {
-      const index = events[event].indexOf(fn)
-      // why would I use `~index` if `!==` is more clear
-      if (index !== -1) {
-        select(event).splice(index, 1)
-      }
+    const sourceEvents = select(event)
+    const index = sourceEvents.indexOf(fn)
+    // why would I use `~index` if `!==` is more clear
+    if (index !== -1) {
+      sourceEvents.splice(index, 1)
     }
   }
 
