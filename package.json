@@ -13,7 +13,7 @@
   "scripts": {
     "test": "NODE_ENV=test ava && npm run lint && npm run build",
     "lint": "xo src/*.js",
-    "build": "bili --format umd --module-name eventstop",
+    "build": "bili --format umd --compress --module-name eventstop",
     "prepublish": "npm t"
   },
   "author": "egoist <0x142857@gmail.com>",

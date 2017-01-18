@@ -25,3 +25,13 @@ test('once', t => {
   emit('hola', 'mitsuha')
   t.is(yourName, 'taki')
 })
+
+test('wildcard', t => {
+  const {on, emit} = eventstop()
+  let yourName
+  on('*', () => {
+    yourName = 'taki'
+  })
+  emit('foo')
+  t.is(yourName, 'taki')
+})

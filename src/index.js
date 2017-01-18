@@ -28,7 +28,9 @@ export default function eventstop() {
   }
 
   function emit(event, ...args) {
-    select(event).forEach(event => event(...args))
+    for (const handler of [...select('*'), ...select(event)]) {
+      handler(...args)
+    }
   }
 
   return {
