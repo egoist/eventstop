@@ -21,7 +21,11 @@ export default class EventStop {
 
   unsubscribe(event, fn) {
     if (event in this.events) {
-      this.events[event].splice(this.events[event].indexOf(fn), 1)
+      const index = this.events[event].indexOf(fn)
+      // why would I use `~index` if `!==` is more clear
+      if (index !== -1) {
+        this.events[event].splice(index, 1)
+      }
     }
   }
 
