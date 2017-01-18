@@ -1,6 +1,6 @@
 {
   "name": "eventstop",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A minimal event library for Node.js and browser.",
   "repository": {
     "url": "egoist/eventstop",
