@@ -7,9 +7,7 @@ export default function eventstop() {
 
   function on(event, handler) {
     select(event).push(handler)
-    return () => {
-      off(event, handler)
-    }
+    return () => off(event, handler)
   }
 
   function once(event, fn) {
