@@ -49,6 +49,18 @@ const {on, off, emit, once} = eventstop()
 
 Return a function which would execute `off(event, handler)` when you call it.
 
+You can use `*` as event type to listen all types:
+
+```js
+on('*', (type, foo, bar) => {
+  console.log(type, foo, 'and', bar)
+  //=> hello you and me
+})
+emit('hello', 'you', 'me')
+```
+
+In wildcard listener, the first argument of handler function is its **type**.
+
 ### .once(event, handler)
 
 Like `.on` but only trigger `handler` once.
