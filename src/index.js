@@ -1,39 +1,43 @@
-export default class EventStop {
-  constructor() {
-    this.events = {}
+export default function eventstop() {
+  const events = {}
+
+  function select(event) {
+    return events[event] || (events[event] = [])
   }
 
-  subscribe(event, fn, once) {
-    this.events[event] = this.events[event] || []
-    const handler = once ? (...args) => {
-      this.unsubscribe(event, fn)
-      fn(...args)
-    } : fn
-    this.events[event].push(handler)
+  function on(event, handler) {
+    select(event).push(handler)
     return () => {
-      this.unsubscribe(event, handler)
+      off(event, handler)
     }
   }
 
-  once(event, fn) {
-    return this.subscribe(event, fn, true)
+  function once(event, fn) {
+    const handler = (...args) => {
+      off(event, handler)
+      fn(...args)
+    }
+    return on(event, handler)
   }
 
-  unsubscribe(event, fn) {
-    if (event in this.events) {
-      const index = this.events[event].indexOf(fn)
+  function off(event, fn) {
+    if (event in events) {
+      const index = events[event].indexOf(fn)
       // why would I use `~index` if `!==` is more clear
       if (index !== -1) {
-        this.events[event].splice(index, 1)
+        select(event).splice(index, 1)
       }
     }
   }
 
-  emit(event, ...args) {
-    if (event in this.events) {
-      for (const fn of this.events[event]) {
-        fn(...args)
-      }
-    }
+  function emit(event, ...args) {
+    select(event).forEach(event => event(...args))
+  }
+
+  return {
+    on,
+    off,
+    once,
+    emit
   }
 }

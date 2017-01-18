@@ -1,27 +1,27 @@
 import test from 'ava'
-import EventStop from './src'
+import eventstop from './src'
 
 test('main', t => {
-  const event = new EventStop()
+  const {on, emit} = eventstop()
   let yourName
-  const unsubscribe = event.subscribe('hola', name => {
+  const off = on('hola', name => {
     yourName = name
   })
-  event.emit('hola', 'taki')
+  emit('hola', 'taki')
   t.is(yourName, 'taki')
-  unsubscribe()
-  event.emit('hola', 'mitsuha')
+  off()
+  emit('hola', 'mitsuha')
   t.is(yourName, 'taki')
 })
 
 test('once', t => {
-  const event = new EventStop()
+  const {once, emit} = eventstop()
   let yourName
-  const unsubscribe = event.once('hola', name => {
+  const off = once('hola', name => {
     yourName = name
   })
-  event.emit('hola', 'taki')
+  emit('hola', 'taki')
   t.is(yourName, 'taki')
-  event.emit('hola', 'mitsuha')
+  emit('hola', 'mitsuha')
   t.is(yourName, 'taki')
 })

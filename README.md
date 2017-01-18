@@ -19,25 +19,31 @@ You can also use the UMD version via https://unpkg.com/eventstop
 ## Usage
 
 ```js
-const EventStop = require('eventstop')
+const eventstop = require('eventstop')
 
-const event = new EventStop()
+const {on, emit} = eventstop()
 
 // subscribe an event
-const unsubscribe = event.subscribe('ready', msg => {
+const off = on('ready', msg => {
   console.log('message:', msg)
 })
 
-event.emit('ready', 'hola')
+emit('ready', 'hola')
 //=> hola
 
 // unsubscribe
-unsubscribe()
+off()
 ```
 
 ## API
 
-### .subscribe(event, handler)
+```js
+const event = eventstop()
+// or
+const {on, off, emit, once} = eventstop()
+```
+
+### .on(event, handler)
 
 Return a function which would execute `unsubscribe(event, handler)` when you call it.
 
@@ -59,9 +65,9 @@ Type: `function`
 
 Type: `string`
 
-### .unsubscribe(event, handler)
+### .off(event, handler)
 
-Same args to `.subscribe`
+Same args to `.on`
 
 ## Contributing
 

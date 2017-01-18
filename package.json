@@ -33,6 +33,9 @@
   "xo": {
     "space": 2,
     "semicolon": false,
-    "esnext": true
+    "esnext": true,
+    "rules": {
+      "no-return-assign": 0
+    }
   }
 }
