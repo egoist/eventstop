@@ -29,9 +29,10 @@ test('once', t => {
 test('wildcard', t => {
   const {on, emit} = eventstop()
   let yourName
-  on('*', () => {
-    yourName = 'taki'
+  on('*', (type, name) => {
+    t.is(type, 'foo')
+    yourName = name
   })
-  emit('foo')
+  emit('foo', 'taki')
   t.is(yourName, 'taki')
 })

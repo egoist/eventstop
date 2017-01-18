@@ -28,7 +28,10 @@ export default function eventstop() {
   }
 
   function emit(event, ...args) {
-    for (const handler of [...select('*'), ...select(event)]) {
+    for (const handler of select('*')) {
+      handler(event, ...args)
+    }
+    for (const handler of select(event)) {
       handler(...args)
     }
   }

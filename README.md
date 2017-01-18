@@ -6,6 +6,8 @@
 
 - Modern
 - For Node.js and browsers
+- Support wildcard listener: `on('*', (type, ...payload) => {})`
+- Support all major browsers including IE8
 - 300 bytes minified and gzipped
 
 ## Install
