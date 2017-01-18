@@ -45,11 +45,11 @@ const {on, off, emit, once} = eventstop()
 
 ### .on(event, handler)
 
-Return a function which would execute `unsubscribe(event, handler)` when you call it.
+Return a function which would execute `off(event, handler)` when you call it.
 
 ### .once(event, handler)
 
-Like `.subscribe` but only trigger `handler` once.
+Like `.on` but only trigger `handler` once.
 
 #### event
 
